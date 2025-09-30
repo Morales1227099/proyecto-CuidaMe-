@@ -1,9 +1,11 @@
-/* Variables globales */
+/* Variables globales (Paleta de Alto Contraste para 'Cuídame') */
 :root {
-    --primary-color: #2196F3;
-    --secondary-color: #FF4081;
-    --background-color: #f5f5f5;
-    --text-color: #333;
+    --primary-color: #00A9E0; /* Azul Brillante - Interacciones */
+    --secondary-color: #81D41A; /* Verde Lima - Acentos y Éxito */
+    --dark-color: #0A1E4A; /* Azul Profundo - Fondo oscuro / Texto principal */
+    --background-color: #F5F8FA; /* Blanco Nube - Fondo principal */
+    --text-color: var(--dark-color);
+    --error-color: #FF6347; /* Rojo para errores */
     --border-radius: 8px;
 }
 
@@ -26,17 +28,22 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(172, 171, 171, 0.952);
-    box-shadow: 1 2px 4px rgba(0,0,0,0.1);
+    padding: 0.5rem 2rem;
+    background-color: var(--dark-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+.logo-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 .logo {
-    width: 200px;
-    height: 200px;
-    
-    
-    
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .main-nav {
@@ -49,124 +56,205 @@ button {
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: var(--border-radius);
-    background-color: var(--primary-color);
-    color: white;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
-button:hover {
-    transform: translateY(-2px);
+.btn-primary {
+    background-color: var(--primary-color); 
+    color: var(--dark-color); 
 }
+.btn-secondary {
+    background-color: white; 
+    color: var(--dark-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-accent {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+.btn-delete {
+    background-color: var(--error-color);
+    color: white;
+}
+
+/* Landing Page */
+.portada-container {
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 2rem;
+}
+.portada {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.4); /* Oscurecer imagen para mejor contraste del texto */
+}
+.portada-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    max-width: 80%;
+}
+.portada-overlay h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.portada-overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
 
 /* Modales */
 .modal {
     display: none;
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
 }
-
 .modal-content {
     background-color: white;
-    padding: 2rem;
+    margin: 10% auto;
+    padding: 30px;
     border-radius: var(--border-radius);
-    max-width: 500px;
-    margin: 50px auto;
-    animation: fadeIn 0.3s ease;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+.login-info {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
 }
 
 /* Formularios */
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
-
 label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="datetime-local"],
+select {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: var(--border-radius);
-    transition: border-color 0.2s ease;
-}
-
-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
+    font-size: 1rem;
+    background-color: white;
 }
 
 /* Dashboards */
-.dashboard-medico,
-.dashboard-paciente {
+.dashboard-container {
+    display: none; /* Se mostrará con JS */
     max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: white;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-section {
-    margin-bottom: 2rem;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .dashboard-medico,
-    .dashboard-paciente {
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    .modal-content {
-        margin: 10px;
-        width: auto;
-    }
-.paciente-item {
-    background-color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
+.dashboard-medico section,
+.dashboard-paciente section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--background-color);
 }
-
-.acciones {
-    margin-top: 1rem;
+.paciente-item, #citas-list li, #metricas-list li {
+    background-color: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--primary-color);
+}
+.paciente-item .acciones button {
+    margin-left: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
 }
 
-#perfil-info, #historial-info {
-    background-color: white;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* Chatbot */
+#chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--dark-color);
+    font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    z-index: 999;
+    padding: 0;
 }
 
+#chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    flex-direction: column;
+    z-index: 999;
 }
- .portada{
-        width: 100%;
-    height: 100%;
-    opacity: 50%;
- }
+#chatbot-header {
+    background: var(--dark-color);
+    color: white;
+}
+.msg.user {
+    background-color: var(--secondary-color);
+}
+.msg.bot {
+    background-color: #e0e0e0;
+}
+#chatbot-input button {
+    background: var(--primary-color);
+    color: var(--dark-color);
+    font-weight: normal;
+}
