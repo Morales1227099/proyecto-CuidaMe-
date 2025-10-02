@@ -51,19 +51,58 @@
             <div id="perfil-info"></div>
         </section>
         
-        <section class="historial-medico">
-            <div id="historial-info"></div> 
+        <section class="calendario-citas">
+            <h3>📅 Resumen de Citas</h3>
+            <div id="calendar-view"></div>
+        </section>
+        
+        <section class="gestion-salud">
+            
+            <h2>🩺 Seguimiento de Métricas Vitales</h2>
+            <section class="metricas-section">
+                <div id="metric-trends"></div>
+                ${/* Se agrega el formulario de métricas aquí para mantenerlo cerca de las gráficas */''}
+                <ul id="metricas-list"></ul>
+            </section>
+            
+            <h2>🗓️ Citas Programadas</h2>
+            <section class="citas-section">
+                
+                <div id="historial-citas"></div>
+                <ul id="citas-list"></ul>
+            </section>
+
+            <h2>💊 Gestión de Medicamentos</h2>
+            <section class="medicamentos-section">
+                <div id="historial-medicamentos"></div>
+                <ul id="medicamentos-list"></ul>
+            </section>
+            
+            <div id="historial-documentos"></div>
+            
         </section>
     </div>
 
+    <footer>
+        <button id="chatbot-btn">💬</button>
+        <div id="chatbot-window">
+            <div id="chatbot-header">🤖 Asistente Cuídame</div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input">
+                <input type="text" id="user-input" placeholder="Pregunta sobre citas, historial o medicamentos...">
+                <button id="send-btn">Enviar</button>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.getElementById('btn-logout').addEventListener('click', () => {
-            // Limpia la sesión y redirige
             localStorage.removeItem('usuarioActual');
             localStorage.removeItem('tipoUsuario');
             window.location.href = 'index.html'; 
         });
     </script>
+    <script src="chatbot.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

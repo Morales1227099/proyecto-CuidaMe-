@@ -3,52 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuídame | Tu Asistente de Salud Personal</title>
+    <title>Cuídame | Sistema de Control de Pacientes</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css"> 
+    <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
     <header class="main-header">
         <div class="logo-title">
-            <img src="logo.png" class="logo" alt="Logo Cuídame: Corazón y Calendario">
+            <img src="logo.png" class="logo" alt="Logo Cuídame">
             <span>Cuídame</span>
         </div>
         <nav class="main-nav">
-            <button id="btn-login" class="btn-primary">Iniciar Sesión</button>
-            <button id="btn-register" class="btn-secondary">Registro Médico</button>
+            <button id="btn-login" class="btn-secondary">Iniciar Sesión</button>
+            <div class="dropdown-register">
+                <button id="btn-register" class="btn-primary">Registrarse</button>
+                <div class="dropdown-content" id="register-menu">
+                    <a href="#" id="register-medico">Como Médico</a>
+                    <a href="#" id="register-paciente">Como Paciente</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main class="landing-hero">
         <div class="portada-container">
-            <img src="portada.jpeg" class="portada" alt="Imagen de profesionales de la salud organizando información">
+            <img src="portada.jpeg" class="portada" alt="Imagen de fondo de la aplicación médica">
             <div class="portada-overlay">
-                <h1>Organiza tu vida, Cuida tu salud.</h1>
-                <p>Centraliza citas, historial médico, medicamentos y métricas vitales en una plataforma segura y accesible.</p>
-                <button id="btn-login-main" class="btn-accent">Empezar Ahora</button>
+                <h1>Tu Salud, Centralizada y Conectada</h1>
+                <p>Gestiona citas, medicamentos y métricas vitales desde un solo lugar. Conecta con tu médico de forma segura.</p>
+                <button id="btn-iniciar-ahora" class="btn-accent">Empezar Ahora</button>
             </div>
         </div>
-
     </main>
 
     <div class="modal" id="login-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-login-modal">&times;</span>
             <form id="login-form">
-                <h2>Acceso a la Plataforma</h2>
+                <h2>Iniciar Sesión</h2>
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" required placeholder="Ej: paciente@ejemplo.com">
+                    <input type="email" id="email" required placeholder="tu@correo.com">
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" required placeholder="Ingresa tu clave">
+                    <input type="password" id="password" required placeholder="pass o la que hayas definido">
                 </div>
                 <button type="submit" class="btn-primary">Entrar</button>
+                <p class="login-info">¿No tienes cuenta? Regístrate <a href="#" id="link-registro-modal">aquí</a>.</p>
             </form>
-            <p class="login-info">Demo Médico: <b>medico@cuidame.com</b> / <b>pass</b></p>
         </div>
     </div>
+    
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-register-modal">&times;</span>
+            <form id="registro-form">
+                <h2 id="registro-titulo">Registro</h2>
+                <input type="hidden" id="registro-tipo" value="paciente"> <div class="form-group">
+                    <label for="reg-nombre">Nombre:</label>
+                    <input type="text" id="reg-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-apellido">Apellido:</label>
+                    <input type="text" id="reg-apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Correo Electrónico:</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Contraseña:</label>
+                    <input type="password" id="reg-password" required placeholder="Mínimo 6 caracteres">
+                </div>
+                
+                <div id="campo-especialidad" class="form-group" style="display:none;">
+                    <label for="reg-especialidad">Especialidad (Sólo Médicos):</label>
+                    <input type="text" id="reg-especialidad" placeholder="Ej: Cardiología">
+                </div>
+                
+                <button type="submit" class="btn-primary">Crear Cuenta</button>
+            </form>
+        </div>
+    </div>
+
 
     <footer>
         <button id="chatbot-btn">💬</button>
@@ -56,11 +94,12 @@
             <div id="chatbot-header">🤖 Asistente Cuídame</div>
             <div id="chatbot-messages"></div>
             <div id="chatbot-input">
-                <input type="text" id="user-input" placeholder="Pregunta sobre citas, historial o métricas...">
+                <input type="text" id="user-input" placeholder="Pregunta sobre citas o historial médico...">
                 <button id="send-btn">Enviar</button>
             </div>
         </div>
     </footer>
+
     <script src="chatbot.js"></script>
     <script src="script.js"></script>
 </body>
